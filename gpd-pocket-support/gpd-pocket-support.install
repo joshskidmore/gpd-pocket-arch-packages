@@ -1,0 +1,59 @@
+ucm_dir="/usr/share/alsa/ucm/chtrt5645"
+all_off="$(tput sgr0)"
+bold="${all_off}$(tput bold)"
+blue="${bold}$(tput setaf 4)"
+yellow="${bold}$(tput setaf 3)"
+
+msg_blue() {
+  printf "${blue}==>${bold} $1${all_off}\n"
+}
+
+note() {
+  printf "${blue}==>${yellow} NOTE:${bold} $1${all_off}\n"
+}
+
+_bios() {
+  if [ "$(dmidecode -s bios-release-date)" == '06/28/2017' ]; then
+    local flashrom_msg="BIOS is already up-to-date."
+  else
+    local flashrom_msg="You need to update your BIOS!\n\nsudo flashrom -p internal -c W25Q64.W -w /etc/gpd/bios/Rom_8MB_Tablet.bin\n"
+  fi
+  
+  note "$flashrom_msg"
+}
+
+_default_pa() {
+  local scp="set-card-profile alsa_card.platform-cht-bsw-rt5645 HiFi"
+  local sds="set-default-sink alsa_output.platform-cht-bsw-rt5645.HiFi__hw_chtrt5645__sink"
+  local ssp="set-sink-port alsa_output.platform-cht-bsw-rt5645.HiFi__hw_chtrt5645__sink [Out] Speaker"
+  local lines=("$scp" "$sds" "$ssp")
+  local cfg="/etc/pulse/default.pa"
+
+  for i in "${lines[@]}"; do
+      [[ ! $(grep -F "${i}" $cfg) ]] && echo "${i}" >> $cfg || msg_blue "Line found in $cfg: (${i}) skipping..."
+  done
+
+  local rts="realtime-scheduling = no"
+  local pd_conf="/etc/pulse/daemon.conf"
+
+  [[ ! $(grep "^${rts}$" $pd_conf) ]] && echo "${rts}" >> $pd_conf || msg_blue "Line found in $pd_conf: (${rts}) skipping..."
+}
+
+_update() {
+  msg_blue "Checking installed BIOS version..."
+  _bios
+  msg_blue "Adjusting PulseAudio config..."
+  _default_pa
+}
+
+post_install() {
+    _update
+}
+
+post_upgrade() {
+    _update
+}
+
+post_remove() {
+    note "This package may leave artifacts on your system."
+}
