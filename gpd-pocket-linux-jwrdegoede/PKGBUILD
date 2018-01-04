@@ -4,7 +4,7 @@
 # Contributor: Tobias Powalowski <tpowa@archlinux.org>
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
-pkgbase=linux-jwrdegoede
+pkgbase=gpd-pocket-linux-jwrdegoede
 _srcname=linux-sunxi-master
 pkgver=4.15.0rc5.3bdb544
 pkgrel=1
@@ -38,7 +38,7 @@ _kernelname=${pkgbase#linux}
 
 pkgver() {
   cd ${_srcname}
-  
+
   # produce version string
   local ver=($(head -n5 Makefile | awk -F'=' '{print $2}' | sed 's/\n//g'))
   local commit=$(git rev-parse --short HEAD)
@@ -47,7 +47,7 @@ pkgver() {
 
 prepare() {
   cd ${_srcname}
-  
+
   # use included config (overwrite repo config)
   cp -Tf ../config .config
 
