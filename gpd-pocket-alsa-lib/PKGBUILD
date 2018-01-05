@@ -6,7 +6,7 @@
 # Original Source:  https://github.com/njkli/gpd-pocket/tree/master/alsa-lib-gpd-pocket
 
 pkgname=gpd-pocket-alsa-lib
-pkgver=1.1.6
+pkgver=1.1.5
 pkgrel=1
 _srcname=gpd-pocket-alsa-lib-${pkgver}
 pkgdesc='An alternative implementation of Linux sound support WITH GPD Pocket patches'
@@ -22,8 +22,8 @@ provides=("alsa-lib=${pkgver}")
 makedepends=('python2')
 
 source=(
-  'ftp://ftp.alsa-project.org/pub/lib/${_srcname}.tar.bz2'
-  'HiFi.conf'
+  "ftp://ftp.alsa-project.org/pub/lib/${_srcname}.tar.bz2"
+  "HiFi.conf"
 )
 
 sha256sums=(
