@@ -23,12 +23,10 @@ source=(
   '90-linux.hook'
   'linux.preset'
 )
-
 validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
 )
-
 sha256sums=(
   'SKIP'
   'd728b466b5fe2e715b72ae461bddd7fa01cba3670e096bf0fe88a8bf9d79f3ca'
@@ -36,8 +34,8 @@ sha256sums=(
   'cbee6b874133a4c335e6844a20eaec419da93dba70861864ff84b944a0d5524c'
   'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
 )
-
 _kernelname=${pkgbase#linux}
+
 
 pkgver() {
   cd ${_srcname}
