@@ -1,18 +1,21 @@
-#
-# Maintainer: voobscout <voobscout@archlinux.info>
-# Contributor: chrisaw <home@chrisaw.com>
-# Contributor: Tobias Powalowski <tpowa@archlinux.org>
-# Contributor: Thomas Baechler <thomas@archlinux.org>
+# Maintainer:       @joshskidmore <josh@josh.sc>
+# Maintainer:       @sigboe
+# Maintainer:       @chrisaw <home@chrisaw.com>
+# Maintainer:       @njkli <voobscout@archlinux.info>
+# Contributor:      Tobias Powalowski <tpowa@archlinux.org>
+# Contributor:      Thomas Baechler <thomas@archlinux.org>
+# Original Source:  https://github.com/njkli/gpd-pocket/tree/master/linux-jwrdegoede
 
 pkgbase=gpd-pocket-linux-jwrdegoede
 _srcname=linux-sunxi-master
 pkgver=4.15.0rc5.3bdb544
 pkgrel=1
 arch=('x86_64')
-url='https://www.kernel.org/'
+url='https://github.com/joshskidmore/gpd-pocket-arch-packages/tree/master/gpd-pocket-linux-jwrdegoede'
 license=('GPL2')
 makedepends=('xmlto' 'kmod' 'inetutils' 'bc' 'libelf')
 options=('!strip')
+provides=('gpd-pocket-linux-jwrdegoede' 'gpd-pocket-linux-jwrdegoede-docs' 'gpd-pocket-linux-jwrdegoede-headers')
 source=(
   'https://github.com/jwrdegoede/linux-sunxi/archive/master.zip'
   'config'

@@ -1,23 +1,27 @@
-# $Id$
-# Maintainer:  <voobscout@archlinux.info>
-# Contributor: chrisaw <home@chrisaw.com>
-# Contributor: judd <jvinet@zeroflux.org>
+# Maintainers:      @joshskidmore <josh@josh.sc>
+#                   @sigboe
+#                   @chrisaw <home@chrisaw.com>
+#                   @njkli <voobscout@archlinux.info>
+# Contributor:      @judd <jvinet@zeroflux.org>
+# Original Source:  https://github.com/njkli/gpd-pocket/tree/master/alsa-lib-gpd-pocket
 
 pkgname=gpd-pocket-alsa-lib
-pkgver=1.1.5
-_srcname=alsa-lib-${pkgver}
+pkgver=1.1.6
 pkgrel=1
+_srcname=gpd-pocket-alsa-lib-${pkgver}
 pkgdesc='An alternative implementation of Linux sound support WITH GPD Pocket patches'
 arch=('x86_64')
-url='http://www.alsa-project.org'
+url='https://github.com/joshskidmore/gpd-pocket-arch-packages/tree/master/gpd-pocket-alsa-lib'
+license=('LGPL')
 depends=('glibc')
-optdepends=('python2: for python smixer plugin')
+optdepends=(
+  'python2: for python smixer plugin'
+)
 conflicts=('alsa-lib')
 provides=("alsa-lib=${pkgver}")
 makedepends=('python2')
-license=('LGPL')
 source=(
-  "ftp://ftp.alsa-project.org/pub/lib/${_srcname}.tar.bz2"
+  'ftp://ftp.alsa-project.org/pub/lib/${_srcname}.tar.bz2'
   'HiFi.conf'
 )
 sha256sums=(
