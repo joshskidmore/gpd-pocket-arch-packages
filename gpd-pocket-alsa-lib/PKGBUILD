@@ -8,7 +8,7 @@
 pkgname=gpd-pocket-alsa-lib
 pkgver=1.1.5
 pkgrel=1
-_srcname=gpd-pocket-alsa-lib-${pkgver}
+_srcname=alsa-lib-${pkgver}
 pkgdesc='An alternative implementation of Linux sound support WITH GPD Pocket patches'
 arch=('x86_64')
 url='https://github.com/joshskidmore/gpd-pocket-arch-packages/tree/master/gpd-pocket-alsa-lib'
