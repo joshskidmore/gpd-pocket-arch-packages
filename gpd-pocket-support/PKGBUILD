@@ -1,14 +1,24 @@
-# Maintainer:  <voobscout@archlinux.info>
-# Contributor: chrisaw <home@chrisaw.com>
+# Maintainers:      @joshskidmore <josh@josh.sc>
+#                   @sigboe
+#                   @chrisaw <home@chrisaw.com>
+#                   @njkli <voobscout@archlinux.info>
+
+# Original Soure:   https://github.com/njkli/gpd-pocket/tree/master/gpd-pocket-support
 
 pkgname=gpd-pocket-support
 pkgver=0.2.4
 pkgrel=1
-pkgdesc='GPD Pocket - Support package'
+pkgdesc='Meta package to provide various improvements to the GPD Pocket'
 arch=('x86_64')
-url='https://github.com/njkli/gpd-pocket'
+url='https://github.com/joshskidmore/gpd-pocket-arch-packages/tree/master/gpd-pocket-support'
 license=('MIT')
-depends=(gpd-pocket-alsa-lib dmidecode flashrom gawk intel-ucode gpd-pocket-linux-jwrdegoede gpd-pocket-linux-jwrdegoede-docs gpd-pocket-linux-jwrdegoede-headers pulseaudio systemd)
+depends=(dmidecode flashrom gawk intel-ucode pulseaudio systemd)
+optdepends=(
+  'gpd-pocket-alsa-lib: ALSA support for the GPD Pocket'
+  'gpd-pocket-linux-jwrdegoede: linux kernel for the GPD Pocket'
+  'gpd-pocket-linux-jwrdegoede-docs: linux kernel docs for the GPD Pocket'
+  'gpd-pocket-linux-jwrdegoede-headers: linux kernel headers for the GPD Pocket'
+)
 provides=(gpd-pocket-support)
 install=gpd-pocket-support.install
 source=(

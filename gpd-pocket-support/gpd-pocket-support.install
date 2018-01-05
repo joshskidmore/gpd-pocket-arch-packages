@@ -18,7 +18,7 @@ _bios() {
   else
     local flashrom_msg="You need to update your BIOS!\n\nsudo flashrom -p internal -c W25Q64.W -w /etc/gpd/bios/Rom_8MB_Tablet.bin\n"
   fi
-  
+
   note "$flashrom_msg"
 }
 
