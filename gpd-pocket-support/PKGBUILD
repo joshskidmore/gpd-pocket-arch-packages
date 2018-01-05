@@ -2,8 +2,7 @@
 #                   @sigboe
 #                   @chrisaw <home@chrisaw.com>
 #                   @njkli <voobscout@archlinux.info>
-
-# Original Soure:   https://github.com/njkli/gpd-pocket/tree/master/gpd-pocket-support
+# Original Source:  https://github.com/njkli/gpd-pocket/tree/master/gpd-pocket-support
 
 pkgname=gpd-pocket-support
 pkgver=0.2.4
