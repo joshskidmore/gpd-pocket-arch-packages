@@ -8,7 +8,8 @@
 
 pkgbase=gpd-pocket-linux-jwrdegoede
 _srcname=linux-sunxi-master
-pkgver=4.15.0rc5.3bdb544
+pkgver=4.15.0rc7.54bf239
+commit=54bf239
 pkgrel=1
 arch=('x86_64')
 url='https://github.com/joshskidmore/gpd-pocket-arch-packages/tree/master/gpd-pocket-linux-jwrdegoede'
@@ -17,7 +18,7 @@ makedepends=('xmlto' 'kmod' 'inetutils' 'bc' 'libelf')
 options=('!strip')
 provides=('gpd-pocket-linux-jwrdegoede' 'gpd-pocket-linux-jwrdegoede-docs' 'gpd-pocket-linux-jwrdegoede-headers')
 source=(
-  'https://github.com/jwrdegoede/linux-sunxi/archive/master.zip'
+  "https://github.com/jwrdegoede/linux-sunxi/archive/$commit.zip"
   'config'
   '60-linux.hook'
   '90-linux.hook'
@@ -38,15 +39,16 @@ _kernelname=${pkgbase#linux}
 
 
 pkgver() {
+  local _srcname=$(ls -d */)
   cd ${_srcname}
 
   # produce version string
   local ver=($(head -n5 Makefile | awk -F'=' '{print $2}' | sed 's/\n//g'))
-  local commit=$(git rev-parse --short HEAD)
   printf "%s" "${ver[0]}.${ver[1]}.${ver[2]}${ver[3]/-/}.${commit}"
 }
 
 prepare() {
+  local _srcname=$(ls -d */)    
   cd ${_srcname}
 
   # use included config (overwrite repo config)
@@ -66,6 +68,7 @@ prepare() {
 }
 
 build() {
+  local _srcname=$(ls -d */)
   cd ${_srcname}
 
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
@@ -79,6 +82,7 @@ _package() {
   backup=("etc/mkinitcpio.d/${pkgbase}.preset")
   install=linux.install
 
+  local _srcname=$(ls -d */)
   cd ${_srcname}
 
   # get kernel version
@@ -132,6 +136,7 @@ _package() {
 _package-headers() {
   pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
 
+  local _srcname=$(ls -d */)
   cd ${_srcname}
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
@@ -199,6 +204,7 @@ _package-headers() {
 _package-docs() {
   pkgdesc="Kernel hackers manual - HTML documentation that comes with the ${pkgbase/linux/Linux} kernel"
 
+  local _srcname=$(ls -d */)
   cd ${_srcname}
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
